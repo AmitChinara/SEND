@@ -29,17 +29,35 @@ CREATE OR REPLACE TEMPORARY TABLE Transformed_Table AS (
             MDASVS.*,
             ROW_NUMBER() OVER (
                 PARTITION BY MDASVS.MBR_KEY, MDASVS.UNIQUE_ATRIB_ID
-                ORDER BY MDASVS.SUB_CTGRY_VAL_TXT, BSPC.SRC_PRTY_NBR
+                ORDER BY MDASVS.SUB_CTGRY_VAL_TXT, BSPC.SRC_PRTY_NBR, MDASVS.SRC_ATRB_STRT_DT DESC
             ) AS rn
         FROM
             MBR_DMGRPHC_ATRB_SRC_VAL_STG MDASVS
             JOIN BOT_SRC_PRTZTN_CONFIG BSPC
             ON MDASVS.UNIQUE_ATRIB_ID = BSPC.UNIQUE_ATRIB_ID
+        WHERE
+            UPPER(MDASVS.SRC_ATRB_VAL_TXT) NOT IN ('NA', 'UNK', 'UNKNOWN', '', 'NULL')
+            AND UPPER(MDASVS.SRC_ATRB_VAL_TXT) NOT IN ('I CHOOSE NOT TO REPLY', 'DECLINED', 'REFUSED TO COMMENT')
+            AND (
+                UPPER(MDASVS.TRGHT_HIGH_LVL_CD_VAL_DESC) <> 'ASKED BUT NO ANSWER'
+                OR (
+                    UPPER(MDASVS.TRGHT_HIGH_LVL_CD_VAL_DESC) = 'ASKED BUT NO ANSWER'
+                    AND NOT EXISTS (
+                        SELECT 1
+                        FROM MBR_DMGRPHC_ATRB_SRC_VAL_STG MDASVS_INNER
+                        WHERE
+                            MDASVS.MBR_KEY = MDASVS_INNER.MBR_KEY
+                            AND MDASVS.UNIQUE_ATRIB_ID = MDASVS_INNER.UNIQUE_ATRIB_ID
+                            AND UPPER(MDASVS_INNER.SRC_ATRB_VAL_TXT) NOT IN ('NA', 'UNK', 'UNKNOWN', '', 'NULL')
+                            AND UPPER(MDASVS_INNER.SRC_ATRB_VAL_TXT) NOT IN ('I CHOOSE NOT TO REPLY', 'DECLINED', 'REFUSED TO COMMENT')
+                            AND UPPER(MDASVS_INNER.TRGHT_HIGH_LVL_CD_VAL_DESC) <> 'ASKED BUT NO ANSWER'
+                    )
+                )
+            )
     ) MDASVS
     WHERE
         MDASVS.rn = 1
 );
-
 
 INSERT INTO MBR_DMGRPHC_ATRB_FNL_VAL_STG (
     EDL_LOAD_DTM,
