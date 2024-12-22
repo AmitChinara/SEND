@@ -11,7 +11,7 @@ CREATE TABLE EMPLOYEES (
     performance_score DECIMAL(4, 2)
 );
 
-INSERT INTO EMPLOYEES (first_name, last_name, joining_date, salary, performance_score)
+INSERT INTO EMPLOYEES (id, first_name, last_name, joining_date, salary, performance_score)
 VALUES 
 (1,'Alice', 'Smith', '2021-05-15', 75000.50, 4.8),
 (2,'Bob', 'Johnson', '2019-07-10', 63000.00, 3.7),
