@@ -1,30 +1,3 @@
-DROP TABLE Customers;
-DROP TABLE Orders;
-DROP TABLE Shippings;
-
-CREATE TABLE EMPLOYEES (
-    id SERIAL PRIMARY KEY,
-    first_name VARCHAR(50),
-    last_name VARCHAR(50),
-    joining_date DATE,
-    salary DECIMAL(10, 2),
-    performance_score DECIMAL(4, 2)
-);
-
-INSERT INTO EMPLOYEES (id, first_name, last_name, joining_date, salary, performance_score)
-VALUES 
-(1,'Alice', 'Smith', '2021-05-15', 75000.50, 4.8),
-(2,'Bob', 'Johnson', '2019-07-10', 63000.00, 3.7),
-(3,'Charlie', 'Brown', '2020-01-20', 54000.75, 4.2),
-(4,'Diana', 'Miller', '2022-08-01', 80000.00, 5.0),
-(5,'Eve', 'Davis', '2023-03-12', 46000.25, 2.9),
-(6,'Frank', 'Garcia', '2018-11-25', 70000.00, 3.9),
-(7,'Grace', 'Martinez', '2020-09-17', 88000.80, 4.6),
-(8,'Hank', 'Wilson', '2017-04-28', 52000.60, 3.3),
-(9,'Ivy', 'Anderson', '2021-06-30', 91000.10, 4.9),
-(10,'Jack', 'Thomas', '2019-12-05', 57000.45, 4.0),
-(11,'Kara', 'Taylor', '2020-02-15', 63000.90, 4.1),
-(12,'Leo', 'Moore', '2021-10-22', 68000.75, 4.4),
-(13,'Mona', 'Clark', '2022-07-13', 48000.30, 3.0),
-(14,'Nick', 'Hernandez', '2020-12-11', 72000.00, 4.3),
-(15,'Olive', 'Walker', '2023-05-03', 58000.80, 3.5);
+INSERT INTO Department VALUES (1, 'HR');
+INSERT INTO Department VALUES (2, 'Engineering');
+INSERT INTO Department VALUES (3, 'Marketing');
