@@ -1,4 +1,4 @@
-INSERT INTO Employee VALUES (101, 'John', 'Doe', 1, 50000, '2020-01-15', NULL);
-INSERT INTO Employee VALUES (102, 'Jane', 'Smith', 2, 75000, '2019-03-10', 101);
-INSERT INTO Employee VALUES (103, 'Alice', 'Brown', 2, 60000, '2021-05-20', 102);
-INSERT INTO Employee VALUES (104, 'Bob', 'Johnson', 3, 55000, '2020-07-15', NULL);
+INSERT INTO Projects VALUES 
+  (1, 'Recruitment System', 1),
+  (2, 'E-Commerce Platform', 2),
+  (3, 'Ad Campaign', 3);
