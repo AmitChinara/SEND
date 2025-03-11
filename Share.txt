@@ -1,60 +1,13 @@
--- Create table for departments
-CREATE TABLE Departments (
-    DepartmentID INT PRIMARY KEY,
-    DepartmentName VARCHAR(100) NOT NULL
-);
+class Family:
 
--- Create table for employees
-CREATE TABLE Employees (
-    EmployeeID INT PRIMARY KEY,
-    FirstName VARCHAR(50),
-    LastName VARCHAR(50),
-    DepartmentID INT,
-    Salary DECIMAL(10, 2),
-    JoiningDate DATE,
-    ManagerID INT,
-    FOREIGN KEY (DepartmentID) REFERENCES Departments(DepartmentID),
-    FOREIGN KEY (ManagerID) REFERENCES Employees(EmployeeID)
-);
+	def __init__ (self, owner, father, mother):
+		self.__ownerRoom = owner
+		self.__fatherRoom = father
+		self.__motherRoom = mother
 
--- Create table for projects
-CREATE TABLE Projects (
-    ProjectID INT PRIMARY KEY,
-    ProjectName VARCHAR(100) NOT NULL,
-    DepartmentID INT,
-    FOREIGN KEY (DepartmentID) REFERENCES Departments(DepartmentID)
-);
+def main():
+	shawFamily = Family('Sonal', 'Laxmi', 'Sheela')
+	chinaraFamily = Family('Amit', 'Pravat', 'Namita')
 
--- Create table for employee-project assignments
-CREATE TABLE EmployeeProjects (
-    EmployeeID INT,
-    ProjectID INT,
-    AssignmentDate DATE,
-    PRIMARY KEY (EmployeeID, ProjectID),
-    FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID),
-    FOREIGN KEY (ProjectID) REFERENCES Projects(ProjectID)
-);
-
--- STEP 2: Insert Sample Data
-
--- Insert departments
-INSERT INTO Departments VALUES (1, 'HR');
-INSERT INTO Departments VALUES (2, 'Engineering');
-INSERT INTO Departments VALUES (3, 'Marketing');
-
--- Insert employees
-INSERT INTO Employees VALUES (101, 'John', 'Doe', 1, 50000, '2020-01-15', NULL);
-INSERT INTO Employees VALUES (102, 'Jane', 'Smith', 2, 75000, '2019-03-10', 101);
-INSERT INTO Employees VALUES (103, 'Alice', 'Brown', 2, 60000, '2021-05-20', 102);
-INSERT INTO Employees VALUES (104, 'Bob', 'Johnson', 3, 55000, '2020-07-15', NULL);
-
--- Insert projects
-INSERT INTO Projects VALUES (1, 'Recruitment System', 1);
-INSERT INTO Projects VALUES (2, 'E-Commerce Platform', 2);
-INSERT INTO Projects VALUES (3, 'Ad Campaign', 3);
-
--- Insert employee-project assignments
-INSERT INTO EmployeeProjects VALUES (101, 1, '2022-01-01');
-INSERT INTO EmployeeProjects VALUES (102, 2, '2021-06-01');
-INSERT INTO EmployeeProjects VALUES (103, 2, '2021-06-01');
-INSERT INTO EmployeeProjects VALUES (104, 3, '2022-05-01');
+if __name__ == '__main__':
+	main()
