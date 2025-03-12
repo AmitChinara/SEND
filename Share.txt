@@ -1,15 +1,13 @@
-CREATE TABLE Employees (ID INT, Name VARCHAR(50), Salary INT, Department VARCHAR(50));
-INSERT INTO Employees VALUES 
-(1, 'Alice', 60000, 'HR'),
-(2, 'Bob', 70000, 'IT'),
-(3, 'Charlie', 70000, 'IT'),
-(4, 'David', 50000, 'Finance'),
-(5, 'Eve', 80000, 'IT');
+Create a Car Class
+Write a Python class Car with attributes brand, model, and year.
 
-CREATE TABLE Sales (ID INT, SaleDate DATE, Amount INT);
-INSERT INTO Sales VALUES 
-(1, '2024-03-01', 100),
-(2, '2024-03-02', 150),
-(3, '2024-03-03', 200),
-(4, '2024-03-04', 250);
+Implement a method display_info() that prints the car’s details.
+Create an object of the class and display its information.
+Bank Account Class
+Implement a BankAccount class with the following:
 
+Attributes: account_number, balance (default = 0).
+Methods:
+deposit(amount): Adds money to the balance.
+withdraw(amount): Deducts money if enough balance is available.
+get_balance(): Returns the current balance.
