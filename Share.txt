@@ -1,13 +1,6 @@
-Create a Car Class
-Write a Python class Car with attributes brand, model, and year.
+Create a class Vehicle with:
 
-Implement a method display_info() that prints the car’s details.
-Create an object of the class and display its information.
-Bank Account Class
-Implement a BankAccount class with the following:
-
-Attributes: account_number, balance (default = 0).
-Methods:
-deposit(amount): Adds money to the balance.
-withdraw(amount): Deducts money if enough balance is available.
-get_balance(): Returns the current balance.
+An attribute brand and a method start_engine().
+Create a subclass Car that inherits from Vehicle.
+The Car class should have an additional attribute model and override the start_engine() method.
+Create an object of Car and call both methods
