@@ -1,6 +1,6 @@
-Create a class Vehicle with:
+Polymorphism Question
+Define two classes, Cat and Dog, both having a method make_sound().
 
-An attribute brand and a method start_engine().
-Create a subclass Car that inherits from Vehicle.
-The Car class should have an additional attribute model and override the start_engine() method.
-Create an object of Car and call both methods
+Cat should return "Meow"
+Dog should return "Bark"
+Write a function that takes a list of animals and calls make_sound() for each.
