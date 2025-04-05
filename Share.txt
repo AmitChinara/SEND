@@ -1,6 +1,35 @@
-Polymorphism Question
-Define two classes, Cat and Dog, both having a method make_sound().
+Project Title: Personal Book Manager (CLI App)
 
-Cat should return "Meow"
-Dog should return "Bark"
-Write a function that takes a list of animals and calls make_sound() for each.
+Project Features:
+- Add, view, and delete book records.
+- Store records in a JSON file.
+- Use classes and OOP concepts.
+- Include exception handling.
+- Use custom modules.
+- Use sets, lists, and dictionaries.
+- Read/write file data using json.
+
+Project Structure:
+book_manager/
+│
+├── main.py                # Entry point
+├── book.py                # Book class (OOP)
+├── utils.py               # Helper functions
+├── storage.json           # Data storage (auto-created)
+
+Key Concepts Used:
+
+| Concept                    | Usage                                 |
+|---------------------------|---------------------------------------|
+| Variables/Data Types       | Book details, loops                  |
+| Operators & Control Flow   | Menu choices, conditions             |
+| Functions                  | Reusable logic                       |
+| Exception Handling         | File errors, input validation        |
+| Lists/Dictionaries         | Manage multiple books                |
+| Sets/Tuples                | Optional uniqueness checks           |
+| Strings                    | Manipulating book details            |
+| OOP                        | Classes (Book), methods (__init__, __str__) |
+| Inheritance/Encapsulation  | Could be extended                    |
+| Modules/Packages           | Split logic into files               |
+| File Handling              | Store and load book data             |
+| JSON                       | Save data persistently               |
