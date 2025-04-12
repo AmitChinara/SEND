@@ -2,28 +2,28 @@ INSERT INTO employees (employee_id, name, position, department, salary)
 VALUES ('E001', 'John Doe', 'Engineer', 'IT', 75000.00);
 
 INSERT INTO employees (employee_id, name, position, department, salary)
-VALUES ('E002', 'Jane Smith', 'Manager', 'HR', 85000.00);
+VALUES ('E002', 'Jane S', 'Manager', 'HR', 85000.00);
 
 INSERT INTO employees (employee_id, name, position, department, salary)
-VALUES ('E003', 'Alice Brown', 'Analyst', 'Finance', 72000.00);
+VALUES ('E003', 'Alice B', 'Analyst', 'Finance', 72000.00);
 
 INSERT INTO employees (employee_id, name, position, department, salary)
-VALUES ('E004', 'Bob Johnson', 'Clerk', 'Admin', 45000.00);
+VALUES ('E004', 'Bob J', 'Clerk', 'Admin', 45000.00);
 
 INSERT INTO employees (employee_id, name, position, department, salary)
-VALUES ('E005', 'Charlie Davis', 'Lead', 'Sales', 95000.00);
+VALUES ('E005', 'Charlie D', 'Lead', 'Sales', 95000.00);
 
 INSERT INTO employees (employee_id, name, position, department, salary)
-VALUES ('E006', 'David Evans', 'Supervisor', 'IT', 80000.00);
+VALUES ('E006', 'David E', 'Supervisor', 'IT', 80000.00);
 
 INSERT INTO employees (employee_id, name, position, department, salary)
-VALUES ('E007', 'Emma White', 'Technician', 'Support', 65000.00);
+VALUES ('E007', 'Emma W', 'Technician', 'Support', 65000.00);
 
 INSERT INTO employees (employee_id, name, position, department, salary)
-VALUES ('E008', 'Frank Harris', 'Director', 'Marketing', 110000.00);
+VALUES ('E008', 'Frank H', 'Director', 'Marketing', 110000.00);
 
 INSERT INTO employees (employee_id, name, position, department, salary)
-VALUES ('E009', 'Grace Lee', 'Specialist', 'Finance', 78000.00);
+VALUES ('E009', 'Grace L', 'Specialist', 'Finance', 78000.00);
 
 INSERT INTO employees (employee_id, name, position, department, salary)
-VALUES ('E010', 'Henry Clark', 'Coordinator', 'Admin', 54000.00);
+VALUES ('E010', 'Henry C', 'Coordinator', 'Admin', 54000.00);
