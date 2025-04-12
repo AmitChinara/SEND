@@ -1,44 +1,29 @@
-CREATE TABLE EMPLOYEES (
-    EMP_ID NUMBER PRIMARY KEY,
-    FIRST_NAME VARCHAR2(50),
-    LAST_NAME VARCHAR2(50),
-    DEPARTMENT VARCHAR2(50),
-    SALARY NUMBER(10, 2),
-    JOIN_DATE DATE
-);
+INSERT INTO employees (employee_id, name, position, department, salary)
+VALUES ('E001', 'John Doe', 'Engineer', 'IT', 75000.00);
 
+INSERT INTO employees (employee_id, name, position, department, salary)
+VALUES ('E002', 'Jane Smith', 'Manager', 'HR', 85000.00);
 
-BEGIN
-    INSERT INTO EMPLOYEES VALUES (1, 'John', 'Doe', 'HR', 55000, TO_DATE('2020-01-15', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (2, 'Jane', 'Smith', 'Finance', 72000, TO_DATE('2019-03-10', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (3, 'Robert', 'Johnson', 'IT', 88000, TO_DATE('2021-07-22', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (4, 'Emily', 'Davis', 'Marketing', 63000, TO_DATE('2020-11-01', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (5, 'Michael', 'Brown', 'Sales', 71000, TO_DATE('2018-09-12', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (6, 'Sarah', 'Miller', 'HR', 58000, TO_DATE('2021-05-19', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (7, 'David', 'Wilson', 'Finance', 76000, TO_DATE('2017-06-07', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (8, 'Laura', 'Moore', 'IT', 91000, TO_DATE('2020-12-17', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (9, 'James', 'Taylor', 'Marketing', 64000, TO_DATE('2019-10-28', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (10, 'Linda', 'Anderson', 'Sales', 73000, TO_DATE('2022-02-14', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (11, 'Daniel', 'Thomas', 'HR', 59000, TO_DATE('2021-09-21', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (12, 'Karen', 'Jackson', 'Finance', 75000, TO_DATE('2020-08-05', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (13, 'Matthew', 'White', 'IT', 87000, TO_DATE('2018-04-23', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (14, 'Barbara', 'Harris', 'Marketing', 62000, TO_DATE('2020-10-15', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (15, 'Anthony', 'Martin', 'Sales', 70000, TO_DATE('2019-03-30', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (16, 'Susan', 'Thompson', 'HR', 56000, TO_DATE('2021-01-02', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (17, 'Charles', 'Garcia', 'Finance', 74000, TO_DATE('2017-12-09', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (18, 'Jessica', 'Martinez', 'IT', 90000, TO_DATE('2022-05-11', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (19, 'Thomas', 'Robinson', 'Marketing', 65000, TO_DATE('2018-07-04', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (20, 'Nancy', 'Clark', 'Sales', 72000, TO_DATE('2020-03-26', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (21, 'Steven', 'Rodriguez', 'HR', 60000, TO_DATE('2022-06-01', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (22, 'Betty', 'Lewis', 'Finance', 77000, TO_DATE('2019-08-13', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (23, 'Brian', 'Lee', 'IT', 93000, TO_DATE('2017-11-29', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (24, 'Margaret', 'Walker', 'Marketing', 61000, TO_DATE('2020-09-08', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (25, 'Edward', 'Hall', 'Sales', 69000, TO_DATE('2018-10-25', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (26, 'Sandra', 'Allen', 'HR', 57000, TO_DATE('2021-11-13', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (27, 'Kevin', 'Young', 'Finance', 78000, TO_DATE('2022-04-03', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (28, 'Donna', 'Hernandez', 'IT', 94000, TO_DATE('2019-02-19', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (29, 'Jason', 'King', 'Marketing', 66000, TO_DATE('2020-06-06', 'YYYY-MM-DD'));
-    INSERT INTO EMPLOYEES VALUES (30, 'Carol', 'Wright', 'Sales', 74000, TO_DATE('2021-03-20', 'YYYY-MM-DD'));
-    COMMIT;
-END;
-/
+INSERT INTO employees (employee_id, name, position, department, salary)
+VALUES ('E003', 'Alice Brown', 'Analyst', 'Finance', 72000.00);
+
+INSERT INTO employees (employee_id, name, position, department, salary)
+VALUES ('E004', 'Bob Johnson', 'Clerk', 'Admin', 45000.00);
+
+INSERT INTO employees (employee_id, name, position, department, salary)
+VALUES ('E005', 'Charlie Davis', 'Lead', 'Sales', 95000.00);
+
+INSERT INTO employees (employee_id, name, position, department, salary)
+VALUES ('E006', 'David Evans', 'Supervisor', 'IT', 80000.00);
+
+INSERT INTO employees (employee_id, name, position, department, salary)
+VALUES ('E007', 'Emma White', 'Technician', 'Support', 65000.00);
+
+INSERT INTO employees (employee_id, name, position, department, salary)
+VALUES ('E008', 'Frank Harris', 'Director', 'Marketing', 110000.00);
+
+INSERT INTO employees (employee_id, name, position, department, salary)
+VALUES ('E009', 'Grace Lee', 'Specialist', 'Finance', 78000.00);
+
+INSERT INTO employees (employee_id, name, position, department, salary)
+VALUES ('E010', 'Henry Clark', 'Coordinator', 'Admin', 54000.00);
