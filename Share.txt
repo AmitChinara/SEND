@@ -1,29 +1,15 @@
-INSERT INTO employees (employee_id, name, position, department, salary)
-VALUES ('E001', 'John D', 'Engr', 'IT', 75000.00);
-
-INSERT INTO employees (employee_id, name, position, department, salary)
-VALUES ('E002', 'Jane S', 'Mgr', 'HR', 85000.00);
-
-INSERT INTO employees (employee_id, name, position, department, salary)
-VALUES ('E003', 'Alice B', 'Anlst', 'Fin', 72000.00);
-
-INSERT INTO employees (employee_id, name, position, department, salary)
-VALUES ('E004', 'Bob J', 'Clerk', 'Admin', 45000.00);
-
-INSERT INTO employees (employee_id, name, position, department, salary)
-VALUES ('E005', 'Charlie D', 'Lead', 'Sales', 95000.00);
-
-INSERT INTO employees (employee_id, name, position, department, salary)
-VALUES ('E006', 'David E', 'Supvr', 'IT', 80000.00);
-
-INSERT INTO employees (employee_id, name, position, department, salary)
-VALUES ('E007', 'Emma W', 'Tech', 'Supp', 65000.00);
-
-INSERT INTO employees (employee_id, name, position, department, salary)
-VALUES ('E008', 'Frank H', 'Dir', 'Mktg', 110000.00);
-
-INSERT INTO employees (employee_id, name, position, department, salary)
-VALUES ('E009', 'Grace L', 'Spclst', 'Finc', 78000.00);
-
-INSERT INTO employees (employee_id, name, position, department, salary)
-VALUES ('E010', 'Henry C', 'Coord', 'Admin', 54000.00);
+INSERT INTO student (studentId, name, age, email) VALUES ('91827364', 'Student1', 21, 'student1@university.com');
+INSERT INTO student (studentId, name, age, email) VALUES ('93847560128345', 'Student2', 24, 'student2@university.com');
+INSERT INTO student (studentId, name, age, email) VALUES ('9203847561', 'Student3', 20, 'student3@university.com');
+INSERT INTO student (studentId, name, age, email) VALUES ('9182736450', 'Student4', 20, 'student4@university.com');
+INSERT INTO student (studentId, name, age, email) VALUES ('1092837465', 'Student5', 24, 'student5@university.com');
+INSERT INTO student (studentId, name, age, email) VALUES ('10293847', 'Student6', 22, 'student6@university.com');
+INSERT INTO student (studentId, name, age, email) VALUES ('4839201756', 'Student7', 20, 'student7@university.com');
+INSERT INTO student (studentId, name, age, email) VALUES ('1029384756012', 'Student8', 23, 'student8@university.com');
+INSERT INTO student (studentId, name, age, email) VALUES ('2847561093', 'Student9', 22, 'student9@university.com');
+INSERT INTO student (studentId, name, age, email) VALUES ('7610293847', 'Student10', 21, 'student10@university.com');
+INSERT INTO student (studentId, name, age, email) VALUES ('8273649102', 'Student11', 23, 'student11@university.com');
+INSERT INTO student (studentId, name, age, email) VALUES ('576839201712345', 'Student12', 22, 'student12@university.com');
+INSERT INTO student (studentId, name, age, email) VALUES ('91827364501', 'Student13', 21, 'student13@university.com');
+INSERT INTO student (studentId, name, age, email) VALUES ('90218374', 'Student14', 19, 'student14@university.com');
+INSERT INTO student (studentId, name, age, email) VALUES ('6471829304', 'Student15', 19, 'student15@university.com');
