@@ -10,3 +10,24 @@ CREATE TABLE employees (
     salary INT,
     hire_date DATE
 );
+
+
+-- Departments
+INSERT INTO departments (department_id, department_name) VALUES
+(1, 'HR'),
+(2, 'Engineering'),
+(3, 'Marketing');
+
+-- Employees
+INSERT INTO employees (emp_id, emp_name, department_id, salary, hire_date) VALUES
+(101, 'Alice', 2, 80000, '2020-06-01'),
+(102, 'Bob', 2, 80000, '2021-01-15'),
+(103, 'Carol', 2, 75000, '2019-03-20'),
+(104, 'David', 2, 75000, '2022-09-10'),
+(105, 'Eve', 2, 70000, '2020-11-05'),
+(106, 'Frank', 1, 82000, '2022-03-18'),
+(107, 'Grace', 1, 80000, '2021-07-12'),
+(108, 'Heidi', 1, 75000, '2019-11-01'),
+(109, 'Ivan', 3, 70000, '2023-02-20'),
+(110, 'Judy', 3, 68000, '2021-06-30');
+
