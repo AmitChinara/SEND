@@ -1,33 +1,41 @@
-CREATE TABLE departments (
-    department_id INT,
-    department_name STRING
-);
+Problem Statement:
+You are given the following tables:
 
-CREATE TABLE employees (
-    emp_id INT,
-    emp_name STRING,
-    department_id INT,
-    salary INT,
-    hire_date DATE
-);
+Categories Table:
 
+sql
+Copy code
+Categories (
+    CategoryID INT,
+    CategoryName VARCHAR(100)
+)
+Products Table:
 
--- Departments
-INSERT INTO departments (department_id, department_name) VALUES
-(1, 'HR'),
-(2, 'Engineering'),
-(3, 'Marketing');
+sql
+Copy code
+Products (
+    ProductID INT,
+    ProductName VARCHAR(100),
+    CategoryID INT,
+    Price DECIMAL(10,2)
+)
+Orders Table:
 
--- Employees
-INSERT INTO employees (emp_id, emp_name, department_id, salary, hire_date) VALUES
-(101, 'Alice', 2, 80000, '2020-06-01'),
-(102, 'Bob', 2, 80000, '2021-01-15'),
-(103, 'Carol', 2, 75000, '2019-03-20'),
-(104, 'David', 2, 75000, '2022-09-10'),
-(105, 'Eve', 2, 70000, '2020-11-05'),
-(106, 'Frank', 1, 82000, '2022-03-18'),
-(107, 'Grace', 1, 80000, '2021-07-12'),
-(108, 'Heidi', 1, 75000, '2019-11-01'),
-(109, 'Ivan', 3, 70000, '2023-02-20'),
-(110, 'Judy', 3, 68000, '2021-06-30');
+sql
+Copy code
+Orders (
+    OrderID INT,
+    CustomerID INT,
+    OrderDate DATE
+)
+OrderDetails Table:
 
+sql
+Copy code
+OrderDetails (
+    OrderDetailID INT,
+    OrderID INT,
+    ProductID INT,
+    Quantity INT
+)
+Write a SQL query to return the top 3 most expensive products sold in each category. The output should include the product name, category name, and the price of the product.
