@@ -1,41 +1,57 @@
-Problem Statement:
-You are given the following tables:
+# Define a class to count word frequencies in a sentence
+class CountWordFrequency:
 
-Categories Table:
+	# Static method to extract words from the sentence
+	# It converts the sentence to uppercase and removes periods
+	def extractWords(sentence):
+		sentence = sentence.upper().replace('.', '')  # Normalize sentence
+		result = []  # List to store individual words
+		word = ''  # Temporary string to build a word
 
-sql
-Copy code
-Categories (
-    CategoryID INT,
-    CategoryName VARCHAR(100)
-)
-Products Table:
+		# Loop through each character in the sentence
+		for char in sentence:
+			if char != ' ':  # If character is not a space, add to current word
+				word += char
+			else:
+				result.append(word)  # Append the completed word to result
+				word = ''  # Reset word for the next one
 
-sql
-Copy code
-Products (
-    ProductID INT,
-    ProductName VARCHAR(100),
-    CategoryID INT,
-    Price DECIMAL(10,2)
-)
-Orders Table:
+		result.append(word)  # Append the last word after loop
 
-sql
-Copy code
-Orders (
-    OrderID INT,
-    CustomerID INT,
-    OrderDate DATE
-)
-OrderDetails Table:
+		return result
 
-sql
-Copy code
-OrderDetails (
-    OrderDetailID INT,
-    OrderID INT,
-    ProductID INT,
-    Quantity INT
-)
-Write a SQL query to return the top 3 most expensive products sold in each category. The output should include the product name, category name, and the price of the product.
+	# Static method to count how many times search_word appears in the word list
+	def countOccurance(words, search_word):
+		count = 0
+
+		for word in words:
+			if search_word == word:
+				count += 1  # Increment count if word matches search_word
+
+		return count
+
+	# Static method to return a dictionary of word frequencies
+	def returnResult(sentence):
+		result = {}  # Dictionary to hold word counts
+		seen = set()  # Set to track processed words
+
+		words = CountWordFrequency.extractWords(sentence)  # Extract words from sentence
+
+		# Loop through each word and count if not already seen
+		for word in words:
+			if word not in seen:
+				seen.add(word)
+				count = CountWordFrequency.countOccurance(words, word)
+				result[word] = count  # Store word count in dictionary
+
+		return result
+
+# Main driver function
+def main():
+	sentence = 'Amit Chinara is a good boy. Amit Chinara has major as computer science.'
+	dictionary = CountWordFrequency.returnResult(sentence)
+	print(dictionary)  # Print the final word frequency dictionary
+
+# Entry point for the script
+if __name__ == '__main__':
+	main()
