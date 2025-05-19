@@ -1,44 +1,47 @@
-DROP TABLE STUDENTS;
-DROP TABLE MARKS;
+DROP TABLE Customers;
+DROP TABLE Orders;
+DROP TABLE Shippings;
 
-CREATE TABLE departments (
-    dept_id INT PRIMARY KEY,
-    dept_name VARCHAR(50)
-);
-
-CREATE TABLE employees (
-    emp_id INT PRIMARY KEY,
+CREATE TABLE Customers (
+    customer_id INT PRIMARY KEY,
     name VARCHAR(50),
-    dept_id INT,
-    FOREIGN KEY (dept_id) REFERENCES departments(dept_id)
+    city VARCHAR(50)
 );
 
-CREATE TABLE salaries (
-    emp_id INT,
-    month VARCHAR(20),
-    salary INT,
-    FOREIGN KEY (emp_id) REFERENCES employees(emp_id)
+CREATE TABLE Orders (
+    order_id INT PRIMARY KEY,
+    customer_id INT,
+    order_date DATE,
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 );
 
--- Departments
-INSERT INTO departments (dept_id, dept_name) VALUES
-(1, 'HR'),
-(2, 'IT'),
-(3, 'Finance'),
-(4, 'Marketing');
+CREATE TABLE OrderDetails (
+    order_id INT,
+    product_id INT,
+    quantity INT,
+    price_per_unit DECIMAL(10, 2),
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id)
+);
 
--- Employees
-INSERT INTO employees (emp_id, name, dept_id) VALUES
-(101, 'Alice', 2),
-(102, 'Bob', 1),
-(103, 'Charlie', 2),
-(104, 'David', 3),
-(105, 'Emma', NULL); -- no department
+INSERT INTO Customers VALUES 
+(1, 'Alice', 'Delhi'),
+(2, 'Bob', 'Mumbai'),
+(3, 'Charlie', 'Bangalore'),
+(4, 'Diana', 'Hyderabad');
 
--- Salaries
-INSERT INTO salaries (emp_id, month, salary) VALUES
-(101, 'Jan', 50000),
-(101, 'Feb', 52000),
-(102, 'Jan', 40000),
-(103, 'Jan', 60000),
-(104, 'Feb', 45000);
+INSERT INTO Orders VALUES 
+(101, 1, '2024-01-15'),
+(102, 1, '2024-03-18'),
+(103, 2, '2024-01-20'),
+(104, 3, '2024-03-22'),
+(105, 4, '2024-04-01');
+
+INSERT INTO OrderDetails VALUES 
+(101, 201, 2, 25),
+(101, 202, 1, 40),
+(102, 203, 1, 50),
+(103, 204, 3, 20),
+(104, 201, 1, 25),
+(104, 205, 2, 30),
+(105, 202, 1, 40),
+(105, 206, 2, 35);
