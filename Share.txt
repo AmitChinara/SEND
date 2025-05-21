@@ -2,46 +2,67 @@ DROP TABLE Customers;
 DROP TABLE Orders;
 DROP TABLE Shippings;
 
-CREATE TABLE Customers (
-    customer_id INT PRIMARY KEY,
+-- Users table
+CREATE TABLE Users (
+    user_id INT PRIMARY KEY,
     name VARCHAR(50),
+    email VARCHAR(100),
     city VARCHAR(50)
 );
 
-CREATE TABLE Orders (
-    order_id INT PRIMARY KEY,
-    customer_id INT,
-    order_date DATE,
-    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+-- Products table
+CREATE TABLE Products (
+    product_id INT PRIMARY KEY,
+    name VARCHAR(50),
+    price DECIMAL(10, 2),
+    category VARCHAR(30)
 );
 
+-- Orders table
+CREATE TABLE Orders (
+    order_id INT PRIMARY KEY,
+    user_id INT,
+    order_date DATE,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
+
+-- OrderDetails table
 CREATE TABLE OrderDetails (
+    order_detail_id INT PRIMARY KEY,
     order_id INT,
     product_id INT,
     quantity INT,
-    price_per_unit DECIMAL(10, 2),
-    FOREIGN KEY (order_id) REFERENCES Orders(order_id)
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+    FOREIGN KEY (product_id) REFERENCES Products(product_id)
 );
 
-INSERT INTO Customers VALUES 
-(1, 'Alice', 'Delhi'),
-(2, 'Bob', 'Mumbai'),
-(3, 'Charlie', 'Bangalore'),
-(4, 'Diana', 'Hyderabad');
 
-INSERT INTO Orders VALUES 
-(101, 1, '2024-01-15'),
-(102, 1, '2024-03-18'),
-(103, 2, '2024-01-20'),
-(104, 3, '2024-03-22'),
-(105, 4, '2024-04-01');
+-- Insert Users
+INSERT INTO Users VALUES
+(1, 'Alice', 'alice@example.com', 'Delhi'),
+(2, 'Bob', 'bob@example.com', 'Mumbai'),
+(3, 'Charlie', 'charlie@example.com', 'Bangalore');
 
-INSERT INTO OrderDetails VALUES 
-(101, 201, 2, 25),
-(101, 202, 1, 40),
-(102, 203, 1, 50),
-(103, 204, 3, 20),
-(104, 201, 1, 25),
-(104, 205, 2, 30),
-(105, 202, 1, 40),
-(105, 206, 2, 35);
+-- Insert Products
+INSERT INTO Products VALUES
+(101, 'Laptop', 75000.00, 'Electronics'),
+(102, 'Mouse', 500.00, 'Electronics'),
+(103, 'Notebook', 50.00, 'Stationery'),
+(104, 'Pen', 10.00, 'Stationery');
+
+-- Insert Orders
+INSERT INTO Orders VALUES
+(1001, 1, '2024-06-01'),
+(1002, 2, '2024-06-05'),
+(1003, 1, '2024-06-07'),
+(1004, 3, '2024-06-09');
+
+-- Insert OrderDetails
+INSERT INTO OrderDetails VALUES
+(1, 1001, 101, 1),
+(2, 1001, 102, 2),
+(3, 1002, 103, 10),
+(4, 1002, 104, 5),
+(5, 1003, 102, 1),
+(6, 1004, 101, 1),
+(7, 1004, 104, 3);
