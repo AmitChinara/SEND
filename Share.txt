@@ -2,67 +2,57 @@ DROP TABLE Customers;
 DROP TABLE Orders;
 DROP TABLE Shippings;
 
--- Users table
-CREATE TABLE Users (
-    user_id INT PRIMARY KEY,
-    name VARCHAR(50),
-    email VARCHAR(100),
-    city VARCHAR(50)
+-- Members table
+CREATE TABLE Members (
+    member_id INTEGER PRIMARY KEY,
+    name TEXT,
+    join_date TEXT
 );
 
--- Products table
-CREATE TABLE Products (
-    product_id INT PRIMARY KEY,
-    name VARCHAR(50),
-    price DECIMAL(10, 2),
-    category VARCHAR(30)
+-- Books table
+CREATE TABLE Books (
+    book_id INTEGER PRIMARY KEY,
+    title TEXT,
+    author TEXT,
+    genre TEXT
 );
 
--- Orders table
-CREATE TABLE Orders (
-    order_id INT PRIMARY KEY,
-    user_id INT,
-    order_date DATE,
-    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+-- Borrow table (many-to-many: members ↔ books)
+CREATE TABLE Borrow (
+    borrow_id INTEGER PRIMARY KEY,
+    member_id INTEGER,
+    book_id INTEGER,
+    borrow_date TEXT,
+    return_date TEXT,
+    FOREIGN KEY (member_id) REFERENCES Members(member_id),
+    FOREIGN KEY (book_id) REFERENCES Books(book_id)
 );
 
--- OrderDetails table
-CREATE TABLE OrderDetails (
-    order_detail_id INT PRIMARY KEY,
-    order_id INT,
-    product_id INT,
-    quantity INT,
-    FOREIGN KEY (order_id) REFERENCES Orders(order_id),
-    FOREIGN KEY (product_id) REFERENCES Products(product_id)
-);
+-- Members
+INSERT INTO Members VALUES (1, 'Alice', '2024-01-10');
+INSERT INTO Members VALUES (2, 'Bob', '2024-03-15');
+INSERT INTO Members VALUES (3, 'Charlie', '2024-05-20');
+INSERT INTO Members VALUES (4, 'Diana', '2024-02-28');
+INSERT INTO Members VALUES (5, 'Ethan', '2024-04-12');
 
+-- Books
+INSERT INTO Books VALUES (101, '1984', 'George Orwell', 'Fiction');
+INSERT INTO Books VALUES (102, 'Sapiens', 'Yuval Noah Harari', 'History');
+INSERT INTO Books VALUES (103, 'The Alchemist', 'Paulo Coelho', 'Fiction');
+INSERT INTO Books VALUES (104, 'Clean Code', 'Robert C. Martin', 'Programming');
+INSERT INTO Books VALUES (105, 'Atomic Habits', 'James Clear', 'Self-help');
+INSERT INTO Books VALUES (106, 'The Pragmatic Programmer', 'Andy Hunt', 'Programming');
+INSERT INTO Books VALUES (107, 'A Brief History of Time', 'Stephen Hawking', 'Science');
+INSERT INTO Books VALUES (108, 'To Kill a Mockingbird', 'Harper Lee', 'Fiction');
 
--- Insert Users
-INSERT INTO Users VALUES
-(1, 'Alice', 'alice@example.com', 'Delhi'),
-(2, 'Bob', 'bob@example.com', 'Mumbai'),
-(3, 'Charlie', 'charlie@example.com', 'Bangalore');
-
--- Insert Products
-INSERT INTO Products VALUES
-(101, 'Laptop', 75000.00, 'Electronics'),
-(102, 'Mouse', 500.00, 'Electronics'),
-(103, 'Notebook', 50.00, 'Stationery'),
-(104, 'Pen', 10.00, 'Stationery');
-
--- Insert Orders
-INSERT INTO Orders VALUES
-(1001, 1, '2024-06-01'),
-(1002, 2, '2024-06-05'),
-(1003, 1, '2024-06-07'),
-(1004, 3, '2024-06-09');
-
--- Insert OrderDetails
-INSERT INTO OrderDetails VALUES
-(1, 1001, 101, 1),
-(2, 1001, 102, 2),
-(3, 1002, 103, 10),
-(4, 1002, 104, 5),
-(5, 1003, 102, 1),
-(6, 1004, 101, 1),
-(7, 1004, 104, 3);
+-- Borrow records
+INSERT INTO Borrow VALUES (1, 1, 101, '2024-06-01', '2024-06-05');
+INSERT INTO Borrow VALUES (2, 1, 102, '2024-06-10', NULL);
+INSERT INTO Borrow VALUES (3, 2, 103, '2024-06-05', '2024-06-10');
+INSERT INTO Borrow VALUES (4, 2, 101, '2024-06-12', NULL);
+INSERT INTO Borrow VALUES (5, 3, 104, '2024-06-15', NULL);
+INSERT INTO Borrow VALUES (6, 4, 105, '2024-06-16', '2024-06-20');
+INSERT INTO Borrow VALUES (7, 4, 106, '2024-06-21', NULL);
+INSERT INTO Borrow VALUES (8, 5, 107, '2024-06-18', '2024-06-25');
+INSERT INTO Borrow VALUES (9, 1, 108, '2024-06-26', NULL);
+INSERT INTO Borrow VALUES (10, 2, 104, '2024-06-27', NULL);
