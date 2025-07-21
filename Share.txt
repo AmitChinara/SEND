@@ -1,58 +1,100 @@
-DROP TABLE Customers;
-DROP TABLE Orders;
-DROP TABLE Shippings;
-
--- Members table
-CREATE TABLE Members (
-    member_id INTEGER PRIMARY KEY,
-    name TEXT,
-    join_date TEXT
+CREATE TABLE customers (
+    customer_id INT PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100),
+    country VARCHAR(50)
 );
 
--- Books table
-CREATE TABLE Books (
-    book_id INTEGER PRIMARY KEY,
-    title TEXT,
-    author TEXT,
-    genre TEXT
+INSERT INTO customers (customer_id, name, email, country) VALUES
+(1, 'Amit Chinara', 'amit@example.com', 'India'),
+(2, 'Sonal Mehra', 'sonal@example.com', 'India'),
+(3, 'Rahul Verma', 'rahul@example.com', 'USA'),
+(4, 'Emily Watson', 'emily@example.com', 'UK'),
+(5, 'Carlos Mendez', 'carlos@example.com', 'Spain'),
+(6, 'Linda Zhang', 'linda@example.com', 'China'),
+(7, 'John Doe', 'john@example.com', 'USA');
+
+
+CREATE TABLE products (
+    product_id INT PRIMARY KEY,
+    product_name VARCHAR(100),
+    category VARCHAR(50),
+    price DECIMAL(10, 2)
 );
 
--- Borrow table (many-to-many: members ↔ books)
-CREATE TABLE Borrow (
-    borrow_id INTEGER PRIMARY KEY,
-    member_id INTEGER,
-    book_id INTEGER,
-    borrow_date TEXT,
-    return_date TEXT,
-    FOREIGN KEY (member_id) REFERENCES Members(member_id),
-    FOREIGN KEY (book_id) REFERENCES Books(book_id)
+INSERT INTO products (product_id, product_name, category, price) VALUES
+(1, 'Smartphone', 'Electronics', 700),
+(2, 'Laptop', 'Electronics', 1200),
+(3, 'Washing Machine', 'Appliances', 500),
+(4, 'Microwave', 'Appliances', 300),
+(5, 'Headphones', 'Electronics', 100),
+(6, 'Notebook', 'Stationery', 10),
+(7, 'Pen Set', 'Stationery', 5),
+(8, 'Backpack', 'Accessories', 60);
+
+
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    customer_id INT,
+    order_date DATE,
+    total_amount DECIMAL(10, 2),
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
 );
 
--- Members
-INSERT INTO Members VALUES (1, 'Alice', '2024-01-10');
-INSERT INTO Members VALUES (2, 'Bob', '2024-03-15');
-INSERT INTO Members VALUES (3, 'Charlie', '2024-05-20');
-INSERT INTO Members VALUES (4, 'Diana', '2024-02-28');
-INSERT INTO Members VALUES (5, 'Ethan', '2024-04-12');
+INSERT INTO orders (order_id, customer_id, order_date, total_amount) VALUES
+(101, 1, '2024-07-01', 1300),
+(102, 2, '2024-07-02', 700),
+(103, 3, '2024-07-03', 510),
+(104, 1, '2024-08-01', 60),
+(105, 4, '2024-08-10', 300),
+(106, 5, '2024-09-15', 1200),
+(107, 6, '2024-10-10', 100),
+(108, 1, '2024-10-12', 10),
+(109, 7, '2024-10-20', 60);
 
--- Books
-INSERT INTO Books VALUES (101, '1984', 'George Orwell', 'Fiction');
-INSERT INTO Books VALUES (102, 'Sapiens', 'Yuval Noah Harari', 'History');
-INSERT INTO Books VALUES (103, 'The Alchemist', 'Paulo Coelho', 'Fiction');
-INSERT INTO Books VALUES (104, 'Clean Code', 'Robert C. Martin', 'Programming');
-INSERT INTO Books VALUES (105, 'Atomic Habits', 'James Clear', 'Self-help');
-INSERT INTO Books VALUES (106, 'The Pragmatic Programmer', 'Andy Hunt', 'Programming');
-INSERT INTO Books VALUES (107, 'A Brief History of Time', 'Stephen Hawking', 'Science');
-INSERT INTO Books VALUES (108, 'To Kill a Mockingbird', 'Harper Lee', 'Fiction');
 
--- Borrow records
-INSERT INTO Borrow VALUES (1, 1, 101, '2024-06-01', '2024-06-05');
-INSERT INTO Borrow VALUES (2, 1, 102, '2024-06-10', NULL);
-INSERT INTO Borrow VALUES (3, 2, 103, '2024-06-05', '2024-06-10');
-INSERT INTO Borrow VALUES (4, 2, 101, '2024-06-12', NULL);
-INSERT INTO Borrow VALUES (5, 3, 104, '2024-06-15', NULL);
-INSERT INTO Borrow VALUES (6, 4, 105, '2024-06-16', '2024-06-20');
-INSERT INTO Borrow VALUES (7, 4, 106, '2024-06-21', NULL);
-INSERT INTO Borrow VALUES (8, 5, 107, '2024-06-18', '2024-06-25');
-INSERT INTO Borrow VALUES (9, 1, 108, '2024-06-26', NULL);
-INSERT INTO Borrow VALUES (10, 2, 104, '2024-06-27', NULL);
+CREATE TABLE order_items (
+    order_item_id INT PRIMARY KEY,
+    order_id INT,
+    product_id INT,
+    quantity INT,
+    price DECIMAL(10, 2),
+    FOREIGN KEY (order_id) REFERENCES orders(order_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+INSERT INTO order_items (order_item_id, order_id, product_id, quantity, price) VALUES
+(1001, 101, 2, 1, 1200),  -- Laptop
+(1002, 101, 5, 1, 100),   -- Headphones
+(1003, 102, 1, 1, 700),   -- Smartphone
+(1004, 103, 3, 1, 500),   -- Washing Machine
+(1005, 103, 7, 2, 10),    -- Pen Set
+(1006, 104, 8, 1, 60),    -- Backpack
+(1007, 105, 4, 1, 300),   -- Microwave
+(1008, 106, 2, 1, 1200),  -- Laptop
+(1009, 107, 5, 1, 100),   -- Headphones
+(1010, 108, 6, 1, 10),    -- Notebook
+(1011, 109, 8, 1, 60);    -- Backpack
+
+
+CREATE TABLE reviews (
+    review_id INT PRIMARY KEY,
+    product_id INT,
+    customer_id INT,
+    rating INT CHECK (rating BETWEEN 1 AND 5),
+    comment TEXT,
+    FOREIGN KEY (product_id) REFERENCES products(product_id),
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+INSERT INTO reviews (review_id, product_id, customer_id, rating, comment) VALUES
+(1, 1, 2, 5, 'Great phone!'),
+(2, 2, 1, 4, 'Good performance.'),
+(3, 3, 3, 3, 'Average experience.'),
+(4, 4, 4, 5, 'Very handy.'),
+(5, 5, 6, 2, 'Not so great.'),
+(6, 2, 5, 5, 'Loved it!'),
+(7, 6, 1, 4, 'Nice paper quality.'),
+(8, 8, 7, 5, 'Perfect for travel!'),
+(9, 7, 3, 3, 'Decent pens.'),
+(10, 5, 2, 1, 'Terrible sound quality.');
