@@ -1,74 +1,83 @@
-DROP TABLE CUSTOMERS;
-DROP TABLE ORDERS;
-DROP TABLE SHIPPINGS;
+[connections]          
+# *WARNING* *WARNING* *WARNING* *WARNING* *WARNING* *WARNING*
+# 
+# The Snowflake user password is stored in plain text in this file.
+# Pay special attention to the management of this file.
+# Thank you.
+# 
+# *WARNING* *WARNING* *WARNING* *WARNING* *WARNING* *WARNING*
 
-CREATE TABLE students (
-    student_id INT PRIMARY KEY,
-    name VARCHAR(100),
-    gender VARCHAR(10),
-    department_id INT,
-    year_of_study INT
-);
+#If a connection doesn't specify a value, it will default to these
+#
+#accountname = defaultaccount  
+#region = defaultregion
+#username = defaultuser
+#password = defaultpassword
+#dbname = defaultdbname
+#schemaname = defaultschema
+#warehousename = defaultwarehouse
+#rolename = defaultrolename
+#proxy_host = defaultproxyhost
+#proxy_port = defaultproxyport
 
-CREATE TABLE departments (
-    department_id INT PRIMARY KEY,
-    dept_name VARCHAR(100)
-);
+[connections.myProfile]
+#Can be used in SnowSql as #connect example
 
-CREATE TABLE courses (
-    course_id INT PRIMARY KEY,
-    course_name VARCHAR(100),
-    credits INT,
-    department_id INT
-);
+accountname = NUEETRB-PK18454
+username = SONAMIT
+password = sonAmit1841012508
 
-CREATE TABLE enrollments (
-    enrollment_id INT PRIMARY KEY,
-    student_id INT,
-    course_id INT,
-    semester VARCHAR(10),
-    grade VARCHAR(2)
-);
+[variables]
+# SnowSQL defines the variables in this section on startup.
+# You can use these variables in SQL statements. For details, see
+# https://docs.snowflake.com/en/user-guide/snowsql-use.html#using-variables
 
-CREATE TABLE professors (
-    professor_id INT PRIMARY KEY,
-    name VARCHAR(100),
-    department_id INT,
-    hire_date DATE
-);
+# example_variable=27
 
-INSERT INTO students VALUES
-(1, 'Amit Chinara', 'M', 1, 2),
-(2, 'Sonal Mehra', 'F', 2, 1),
-(3, 'Rahul Verma', 'M', 1, 3),
-(4, 'Emily Watson', 'F', 3, 4),
-(5, 'John Doe', 'M', 2, 2),
-(6, 'Priya Sharma', 'F', 3, 1);
+[options]
+# If set to false auto-completion will not occur interactive mode.
+auto_completion = True
 
-INSERT INTO departments VALUES
-(1, 'Computer Science'),
-(2, 'Mechanical'),
-(3, 'Electrical');
+# main log file location. The file includes the log from SnowSQL main
+# executable.
+log_file = ~/.snowsql/log
 
-INSERT INTO courses VALUES
-(101, 'DBMS', 4, 1),
-(102, 'Operating Systems', 4, 1),
-(103, 'Thermodynamics', 3, 2),
-(104, 'Circuits', 3, 3),
-(105, 'Electromagnetics', 3, 3);
+# bootstrap log file location. The file includes the log from SnowSQL bootstrap
+# executable.
+# log_bootstrap_file = ~/.snowsql/log_bootstrap
 
-INSERT INTO enrollments VALUES
-(1, 1, 101, 'Sem1', 'A'),
-(2, 1, 102, 'Sem2', 'B'),
-(3, 2, 103, 'Sem1', 'C'),
-(4, 3, 101, 'Sem1', 'A'),
-(5, 3, 102, 'Sem2', 'A'),
-(6, 4, 104, 'Sem2', 'B'),
-(7, 5, 103, 'Sem1', 'B'),
-(8, 6, 104, 'Sem1', 'C'),
-(9, 6, 105, 'Sem2', 'A');
+# Default log level. Possible values: "CRITICAL", "ERROR", "WARNING", "INFO"
+# and "DEBUG".
+log_level = INFO
 
-INSERT INTO professors VALUES
-(1, 'Dr. Sharma', 1, '2020-01-01'),
-(2, 'Dr. Watson', 3, '2019-06-15'),
-(3, 'Dr. Patel', 2, '2021-03-10');
+# Timing of sql statments and table rendering.
+timing = True
+
+# Table format. Possible values: psql, plain, simple, grid, fancy_grid, pipe,
+# orgtbl, rst, mediawiki, html, latex, latex_booktabs, tsv.
+# Recommended: psql, fancy_grid and grid.
+output_format = psql
+
+# Keybindings: Possible values: emacs, vi.
+# Emacs mode: Ctrl-A is home, Ctrl-E is end. All emacs keybindings are available in the REPL.
+# When Vi mode is enabled you can use modal editing features offered by Vi in the REPL.
+key_bindings = emacs
+
+# OCSP Fail Open Mode.
+# The only OCSP scenario which will lead to connection failure would be OCSP response with a
+# revoked status. Any other errors or in the OCSP module will not raise an error.
+# ocsp_fail_open = True
+
+# Enable temporary credential file for Linux users
+# For Linux users, since there are no OS-key-store, an unsecure temporary credential for SSO can be enabled by this option. The default value for this option is False.
+# client_store_temporary_credential = True
+
+# Select statement split method (default is to use the sql_split method in snowsql, which does not support 'sql_delimiter')
+# sql_split = snowflake.connector.util_text # to use connector's statement_split which has legacy support to 'sql_delimiter'.
+
+# Force the result data to be decoded in utf-8. By default the value is set to false for compatibility with legacy data. It is recommended to set the value to true.
+# json_result_force_utf8_decoding = False
+
+# Repository Base URL
+# The endpoint to download the SnowSQL main module.
+repository_base_url = https://sfc-repo.snowflakecomputing.com/snowsql
