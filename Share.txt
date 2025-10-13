@@ -1,13 +1,55 @@
--- Set your working database and schema
-USE DATABASE SNOWFLAKE_LEARNING_DB;
-USE SCHEMA PUBLIC;
+class Game:
 
--- Test QUALIFY clause
-SELECT
-    id,
-    name,
-    department,
-    salary,
-    RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS rnk
-FROM employees
-QUALIFY rnk = 1;
+	def __init__(self):
+		self.level = 1
+		self.__score = 0
+		self.qstns = [["2 + 2 = ?", ('5','3','4','6'), 'c'], ["4 x 2 = ?", ('8','5','12','10'), 'a'], ["Is Amit Fool ?", ('Yes','No','Hmm','Han'), 'b']]
+
+	def getScore(self):
+		return self.__score
+
+	def start(self):
+		is_running = True
+
+		while is_running:
+			self.__displayQstn(self.level)
+			option = input('Enter your option: ')
+			response = self.__isCorrect(self.level, option)
+			if response == None:
+				continue
+			elif not response or len(self.qstns) < self.level:
+				is_running = False
+
+
+	def __displayQstn(self, level):
+		level -= 1
+		qstn_obj = self.qstns[level]
+
+		print(f'(Level: {level + 1}) Question: {qstn_obj[0]}')
+		print(f'Options: \n   a. {qstn_obj[1][0]}\n   b. {qstn_obj[1][1]}\n   c. {qstn_obj[1][2]}\n   d. {qstn_obj[1][3]}')
+
+	def __isCorrect(self, level, option):
+		level -= 1
+		qstn_obj = self.qstns[level]
+		option = option.lower()
+		
+		if option in 'abcd':
+			if option == qstn_obj[2]:
+				self.level += 1
+				self.__score += 10
+				return True
+			else:
+				return False
+
+		else:
+			print('Invalid Option')
+
+
+def main():
+	game = Game()
+	game.start()
+	print(f'Game Over\nScore: {game.getScore()}')
+
+
+if __name__ == '__main__':
+	main()
