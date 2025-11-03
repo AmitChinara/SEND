@@ -1,55 +1,116 @@
-class Game:
+DROP TABLE CUSTOMERS;
+DROP TABLE ORDERS;
+DROP TABLE SHIPPINGS;
 
-	def __init__(self):
-		self.level = 1
-		self.__score = 0
-		self.qstns = [["2 + 2 = ?", ('5','3','4','6'), 'c'], ["4 x 2 = ?", ('8','5','12','10'), 'a'], ["Is Amit Fool ?", ('Yes','No','Hmm','Han'), 'b']]
+-- Departments table
+CREATE TABLE Departments (
+    dept_id INT PRIMARY KEY,
+    dept_name VARCHAR(50)
+);
 
-	def getScore(self):
-		return self.__score
+-- Employees table
+CREATE TABLE Employees (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR(50),
+    dept_id INT,
+    salary DECIMAL(10,2),
+    manager_id INT,
+    FOREIGN KEY (dept_id) REFERENCES Departments(dept_id)
+);
 
-	def start(self):
-		is_running = True
+-- Customers table
+CREATE TABLE Customers (
+    cust_id INT PRIMARY KEY,
+    cust_name VARCHAR(50),
+    city VARCHAR(50),
+    age INT
+);
 
-		while is_running:
-			self.__displayQstn(self.level)
-			option = input('Enter your option: ')
-			response = self.__isCorrect(self.level, option)
-			if response == None:
-				continue
-			elif not response or len(self.qstns) < self.level:
-				is_running = False
+-- Products table
+CREATE TABLE Products (
+    prod_id INT PRIMARY KEY,
+    prod_name VARCHAR(50),
+    category VARCHAR(50),
+    price DECIMAL(10,2),
+    stock INT
+);
 
+-- Orders table
+CREATE TABLE Orders (
+    order_id INT PRIMARY KEY,
+    cust_id INT,
+    emp_id INT,
+    order_date DATE,
+    total_amount DECIMAL(10,2),
+    FOREIGN KEY (cust_id) REFERENCES Customers(cust_id),
+    FOREIGN KEY (emp_id) REFERENCES Employees(emp_id)
+);
 
-	def __displayQstn(self, level):
-		level -= 1
-		qstn_obj = self.qstns[level]
+-- OrderItems table
+CREATE TABLE OrderItems (
+    item_id INT PRIMARY KEY,
+    order_id INT,
+    prod_id INT,
+    quantity INT,
+    subtotal DECIMAL(10,2),
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+    FOREIGN KEY (prod_id) REFERENCES Products(prod_id)
+);
 
-		print(f'(Level: {level + 1}) Question: {qstn_obj[0]}')
-		print(f'Options: \n   a. {qstn_obj[1][0]}\n   b. {qstn_obj[1][1]}\n   c. {qstn_obj[1][2]}\n   d. {qstn_obj[1][3]}')
+-- Insert data into Departments
+INSERT INTO Departments VALUES
+(1, 'Sales'),
+(2, 'Support'),
+(3, 'IT'),
+(4, 'HR');
 
-	def __isCorrect(self, level, option):
-		level -= 1
-		qstn_obj = self.qstns[level]
-		option = option.lower()
-		
-		if option in 'abcd':
-			if option == qstn_obj[2]:
-				self.level += 1
-				self.__score += 10
-				return True
-			else:
-				return False
+-- Insert data into Employees
+INSERT INTO Employees VALUES
+(1, 'Alice', 1, 65000, NULL),
+(2, 'Bob', 1, 50000, 1),
+(3, 'Charlie', 2, 40000, 1),
+(4, 'Diana', 3, 70000, NULL),
+(5, 'Ethan', 4, 45000, 4),
+(6, 'Fiona', 2, 42000, 3);
 
-		else:
-			print('Invalid Option')
+-- Insert data into Customers
+INSERT INTO Customers VALUES
+(1, 'Ravi Kumar', 'Delhi', 28),
+(2, 'Priya Sharma', 'Mumbai', 35),
+(3, 'John Doe', 'Chennai', 22),
+(4, 'Sara Ali', 'Kolkata', 40),
+(5, 'Arjun Mehta', 'Delhi', 31),
+(6, 'Neha Gupta', 'Bangalore', 26);
 
+-- Insert data into Products
+INSERT INTO Products VALUES
+(1, 'Laptop', 'Electronics', 55000, 20),
+(2, 'Headphones', 'Electronics', 3000, 50),
+(3, 'Office Chair', 'Furniture', 8000, 15),
+(4, 'Desk Lamp', 'Furniture', 1200, 40),
+(5, 'Smartphone', 'Electronics', 35000, 25),
+(6, 'Water Bottle', 'Accessories', 600, 100),
+(7, 'Pen Drive', 'Electronics', 1200, 60);
 
-def main():
-	game = Game()
-	game.start()
-	print(f'Game Over\nScore: {game.getScore()}')
+-- Insert data into Orders
+INSERT INTO Orders VALUES
+(101, 1, 2, '2024-05-10', 58000),
+(102, 2, 3, '2024-06-12', 41000),
+(103, 3, 1, '2024-07-05', 1200),
+(104, 4, 4, '2024-07-10', 8800),
+(105, 5, 1, '2024-08-02', 60000),
+(106, 6, 2, '2024-08-25', 35600);
 
-
-if __name__ == '__main__':
-	main()
+-- Insert data into OrderItems
+INSERT INTO OrderItems VALUES
+(1, 101, 1, 1, 55000),
+(2, 101, 2, 1, 3000),
+(3, 102, 5, 1, 35000),
+(4, 102, 7, 5, 6000),
+(5, 103, 4, 1, 1200),
+(6, 104, 3, 1, 8000),
+(7, 104, 4, 2, 2400),
+(8, 105, 1, 1, 55000),
+(9, 105, 2, 1, 3000),
+(10, 106, 5, 1, 35000),
+(11, 106, 6, 10, 6000);
