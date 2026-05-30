@@ -1,48 +1,35 @@
-1. Find Maximum Number (Easy)
+-- 1. Clean up existing tables if they exist
+DROP TABLE IF EXISTS Shippings;
+DROP TABLE IF EXISTS Orders;
+DROP TABLE IF EXISTS Customers;
+DROP TABLE IF EXISTS Employees;
+DROP TABLE IF EXISTS Departments;
 
-Given an array, return the largest element.
+-- 2. Create Departments Table
+CREATE TABLE Departments (
+    dept_id INT PRIMARY KEY,
+    dept_name VARCHAR(50)
+);
 
-2. Count Vowels in a String (Easy)
+-- 3. Create Employees Table
+CREATE TABLE Employees (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR(50),
+    dept_id INT,
+    manager_id INT,
+    salary INT
+);
 
-Count how many vowels (a, e, i, o, u) are in a string.
+-- 4. Insert Sample Data
+INSERT INTO Departments (dept_id, dept_name) VALUES
+(10, 'Engineering'),
+(20, 'Data Science'),
+(30, 'Marketing'),
+(40, 'HR');
 
-3. Factorial of a Number (Easy)
-
-Find factorial of n using recursion or loop.
-
-4. Check Prime Number (Easy)
-
-Check whether a number is prime.
-
-5. Remove Duplicates from Array (Easy-Medium)
-
-Given an array, return a new array without duplicates.
-
-6. Second Largest Element (Easy-Medium)
-
-Find the second largest number in an array.
-
-7. Move Zeros to End (Medium)
-
-Move all zeros in an array to the end while maintaining order of non-zero elements.
-
-Example:
-[0,1,0,3,12] → [1,3,12,0,0]
-
-8. Find First Non-Repeating Character (Medium)
-
-Return the first character in a string that does not repeat.
-
-9. Rotate Array by K Steps (Medium)
-
-Rotate an array to the right by k steps.
-
-Example:
-[1,2,3,4,5], k=2 → [4,5,1,2,3]
-
-10. Anagram Check (Medium)
-
-Check if two strings are anagrams of each other.
-
-Example:
-"listen" & "silent" → true
+INSERT INTO Employees (emp_id, emp_name, dept_id, manager_id, salary) VALUES
+(1, 'Amit', 10, NULL, 95000),   -- Engineering, No Manager
+(2, 'Neha', 10, 1, 80000),      -- Engineering, Managed by Amit
+(3, 'Rahul', 20, 1, 85000),     -- Data Science, Managed by Amit
+(4, 'Sonal', 20, 3, 90000),     -- Data Science, Managed by Rahul
+(5, 'Pooja', NULL, 3, 70000);   -- No Department, Managed by Rahul
