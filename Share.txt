@@ -1,35 +1,58 @@
--- 1. Clean up existing tables if they exist
+-- 1. DROP EXISTING PROGRAMIZ TABLES
 DROP TABLE IF EXISTS Shippings;
 DROP TABLE IF EXISTS Orders;
 DROP TABLE IF EXISTS Customers;
-DROP TABLE IF EXISTS Employees;
-DROP TABLE IF EXISTS Departments;
 
--- 2. Create Departments Table
-CREATE TABLE Departments (
-    dept_id INT PRIMARY KEY,
-    dept_name VARCHAR(50)
+-- 2. CREATE NEW REPLACEMENT TABLES
+CREATE TABLE Customers (
+    customer_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    email VARCHAR(100),
+    country VARCHAR(50),
+    join_date DATE
 );
 
--- 3. Create Employees Table
-CREATE TABLE Employees (
-    emp_id INT PRIMARY KEY,
-    emp_name VARCHAR(50),
-    dept_id INT,
-    manager_id INT,
-    salary INT
+CREATE TABLE Products (
+    product_id INT PRIMARY KEY,
+    product_name VARCHAR(100),
+    category VARCHAR(50),
+    price DECIMAL(10,2),
+    stock_quantity INT
 );
 
--- 4. Insert Sample Data
-INSERT INTO Departments (dept_id, dept_name) VALUES
-(10, 'Engineering'),
-(20, 'Data Science'),
-(30, 'Marketing'),
-(40, 'HR');
+CREATE TABLE Orders (
+    order_id INT PRIMARY KEY,
+    customer_id INT,
+    product_id INT,
+    order_date DATE,
+    quantity INT,
+    total_amount DECIMAL(10,2),
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id),
+    FOREIGN KEY (product_id) REFERENCES Products(product_id)
+);
 
-INSERT INTO Employees (emp_id, emp_name, dept_id, manager_id, salary) VALUES
-(1, 'Amit', 10, NULL, 95000),   -- Engineering, No Manager
-(2, 'Neha', 10, 1, 80000),      -- Engineering, Managed by Amit
-(3, 'Rahul', 20, 1, 85000),     -- Data Science, Managed by Amit
-(4, 'Sonal', 20, 3, 90000),     -- Data Science, Managed by Rahul
-(5, 'Pooja', NULL, 3, 70000);   -- No Department, Managed by Rahul
+-- 3. INSERT SAMPLE DATA
+
+-- Insert into Customers
+INSERT INTO Customers VALUES (1, 'Alice', 'Smith', 'alice@email.com', 'USA', '2022-01-15');
+INSERT INTO Customers VALUES (2, 'Bob', 'Jones', 'bob@email.com', 'UK', '2022-03-22');
+INSERT INTO Customers VALUES (3, 'Charlie', 'Brown', 'charlie@email.com', 'USA', '2023-05-10');
+INSERT INTO Customers VALUES (4, 'Diana', 'Prince', 'diana@email.com', 'Canada', '2023-06-01');
+INSERT INTO Customers VALUES (5, 'Evan', 'Wright', 'evan@email.com', 'UK', '2024-01-10');
+
+-- Insert into Products
+INSERT INTO Products VALUES (101, 'Laptop', 'Electronics', 999.99, 15);
+INSERT INTO Products VALUES (102, 'Smartphone', 'Electronics', 699.99, 25);
+INSERT INTO Products VALUES (103, 'Desk Chair', 'Furniture', 150.00, 10);
+INSERT INTO Products VALUES (104, 'Coffee Maker', 'Appliances', 89.95, 40);
+INSERT INTO Products VALUES (105, 'Headphones', 'Electronics', 199.99, 0);
+
+-- Insert into Orders
+INSERT INTO Orders VALUES (501, 1, 101, '2024-02-01', 1, 999.99);
+INSERT INTO Orders VALUES (502, 2, 103, '2024-02-05', 2, 300.00);
+INSERT INTO Orders VALUES (503, 1, 104, '2024-02-10', 1, 89.95);
+INSERT INTO Orders VALUES (504, 3, 102, '2024-03-12', 1, 699.99);
+INSERT INTO Orders VALUES (505, 4, 104, '2024-03-15', 3, 269.85);
+INSERT INTO Orders VALUES (506, 2, 101, '2024-04-01', 1, 999.99);
+INSERT INTO Orders VALUES (507, 1, 102, '2024-04-05', 1, 699.99);
