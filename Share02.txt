@@ -1,0 +1,20 @@
+1. Write a query to display all columns from the Products table.
+2. Select the first_name, last_name, and country of all customers who live in the 'USA'.
+3. Find all products that belong to the 'Electronics' category.
+4. List all products with a price greater than $200, ordered by price from highest to lowest.
+5. Find all customers who joined the platform in the year 2023.
+6. Display all unique (distinct) countries where your customers are located.
+7. Find all products that currently have a stock_quantity of 0 (out of stock).
+8. Count the total number of customers in the database.
+9. Calculate the total revenue generated from all orders combined (sum of total_amount).
+10. Find the average price of products in the 'Electronics' category.
+11. Display the total number of orders placed by each customer_id.
+12. List the total sales (total_amount) grouped by each product_id.
+13. Show categories from the Products table that have an average product price greater than $100.
+14. Write a query using an INNER JOIN to display each order's order_id along with the customer's first_name and last_name.
+15. Fetch a list of all orders containing the product_name and the quantity ordered (requires joining Orders and Products).
+16. Combine all three tables to show the first_name of the customer, the product_name they bought, and the order_date.
+17. Find the total amount spent on orders by customers living in the 'UK'.
+18. Write a subquery to find all products that have a price higher than the overall average price of all products.
+19. Find the details of customers who have never placed an order (Hint: Use a LEFT JOIN or NOT IN).
+20. Display the top 3 highest-earning orders (total_amount) along with the respective customer names.
