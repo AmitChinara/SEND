@@ -1,7 +1,3 @@
-Here is the complete, polished challenge fully written out and packaged. It combines the multi-customer database layout, the nested conditional logic for menu navigation, and the transaction handling into one seamless project prompt.
-
-You can copy and paste everything below the line to share it with your friend!
-
 🏦 Coding Challenge: The Multi-Customer ATM Engine
 📌 Context
 In real-world banking applications, a central system must handle multiple customer profiles securely using a unified database. Furthermore, user interfaces must be flexible: if a customer selects the "Withdraw" option by mistake, they should be able to input 0 to cancel the action and safely return to the main menu without modifying their balance or creating a faulty transaction record.
