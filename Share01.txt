@@ -1,58 +1,41 @@
--- 1. DROP EXISTING PROGRAMIZ TABLES
-DROP TABLE IF EXISTS Shippings;
-DROP TABLE IF EXISTS Orders;
-DROP TABLE IF EXISTS Customers;
+Here is the complete, polished challenge fully written out and packaged. It combines the multi-customer database layout, the nested conditional logic for menu navigation, and the transaction handling into one seamless project prompt.
 
--- 2. CREATE NEW REPLACEMENT TABLES
-CREATE TABLE Customers (
-    customer_id INT PRIMARY KEY,
-    first_name VARCHAR(50),
-    last_name VARCHAR(50),
-    email VARCHAR(100),
-    country VARCHAR(50),
-    join_date DATE
-);
+You can copy and paste everything below the line to share it with your friend!
 
-CREATE TABLE Products (
-    product_id INT PRIMARY KEY,
-    product_name VARCHAR(100),
-    category VARCHAR(50),
-    price DECIMAL(10,2),
-    stock_quantity INT
-);
+🏦 Coding Challenge: The Multi-Customer ATM Engine
+📌 Context
+In real-world banking applications, a central system must handle multiple customer profiles securely using a unified database. Furthermore, user interfaces must be flexible: if a customer selects the "Withdraw" option by mistake, they should be able to input 0 to cancel the action and safely return to the main menu without modifying their balance or creating a faulty transaction record.
 
-CREATE TABLE Orders (
-    order_id INT PRIMARY KEY,
-    customer_id INT,
-    product_id INT,
-    order_date DATE,
-    quantity INT,
-    total_amount DECIMAL(10,2),
-    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id),
-    FOREIGN KEY (product_id) REFERENCES Products(product_id)
-);
+🎯 Your Objective
+Write a modular Python program that simulates a multi-customer ATM engine. The program will track customer balances inside a dictionary (acting as a database) and process transactions using specific validation checks.
 
--- 3. INSERT SAMPLE DATA
+⚙️ System Architecture & Rules
+You need to implement/complete the following architecture using four functions:
 
--- Insert into Customers
-INSERT INTO Customers VALUES (1, 'Alice', 'Smith', 'alice@email.com', 'USA', '2022-01-15');
-INSERT INTO Customers VALUES (2, 'Bob', 'Jones', 'bob@email.com', 'UK', '2022-03-22');
-INSERT INTO Customers VALUES (3, 'Charlie', 'Brown', 'charlie@email.com', 'USA', '2023-05-10');
-INSERT INTO Customers VALUES (4, 'Diana', 'Prince', 'diana@email.com', 'Canada', '2023-06-01');
-INSERT INTO Customers VALUES (5, 'Evan', 'Wright', 'evan@email.com', 'UK', '2024-01-10');
+verifyCustomer(database, customer_id)
 
--- Insert into Products
-INSERT INTO Products VALUES (101, 'Laptop', 'Electronics', 999.99, 15);
-INSERT INTO Products VALUES (102, 'Smartphone', 'Electronics', 699.99, 25);
-INSERT INTO Products VALUES (103, 'Desk Chair', 'Furniture', 150.00, 10);
-INSERT INTO Products VALUES (104, 'Coffee Maker', 'Appliances', 89.95, 40);
-INSERT INTO Products VALUES (105, 'Headphones', 'Electronics', 199.99, 0);
+Checks if the customer_id exists as a key in the database dictionary.
 
--- Insert into Orders
-INSERT INTO Orders VALUES (501, 1, 101, '2024-02-01', 1, 999.99);
-INSERT INTO Orders VALUES (502, 2, 103, '2024-02-05', 2, 300.00);
-INSERT INTO Orders VALUES (503, 1, 104, '2024-02-10', 1, 89.95);
-INSERT INTO Orders VALUES (504, 3, 102, '2024-03-12', 1, 699.99);
-INSERT INTO Orders VALUES (505, 4, 104, '2024-03-15', 3, 269.85);
-INSERT INTO Orders VALUES (506, 2, 101, '2024-04-01', 1, 999.99);
-INSERT INTO Orders VALUES (507, 1, 102, '2024-04-05', 1, 699.99);
+Returns True if they exist, and False otherwise.
+
+processDeposit(current_balance, amount)
+
+Ensures the deposit amount is greater than 0.
+
+Returns the updated balance if valid; otherwise, prints an error and returns the original balance.
+
+processWithdraw(current_balance, amount)
+
+Rule A (Navigation Safeguard): If amount == 0, print "Withdrawal canceled. Returning to main menu..." and return the original balance.
+
+Rule B (Validation): If amount < 0, print an error for invalid input.
+
+Rule C (Overdraft Guard): If amount > current_balance, print "Error: Insufficient funds.".
+
+If all checks pass, deduct the amount and return the new balance.
+
+atmSession(database, customer_id, action_type, amount)
+
+The main orchestrator. It must first call verifyCustomer. If the customer does not exist, print an error and halt execution.
+
+If the customer is verified, look up their balance, pass it to the correct helper function based on action_type, and update that customer's specific balance directly inside the database dictionary.
