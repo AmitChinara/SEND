@@ -1,20 +1,61 @@
-1. Write a query to display all columns from the Products table.
-2. Select the first_name, last_name, and country of all customers who live in the 'USA'.
-3. Find all products that belong to the 'Electronics' category.
-4. List all products with a price greater than $200, ordered by price from highest to lowest.
-5. Find all customers who joined the platform in the year 2023.
-6. Display all unique (distinct) countries where your customers are located.
-7. Find all products that currently have a stock_quantity of 0 (out of stock).
-8. Count the total number of customers in the database.
-9. Calculate the total revenue generated from all orders combined (sum of total_amount).
-10. Find the average price of products in the 'Electronics' category.
-11. Display the total number of orders placed by each customer_id.
-12. List the total sales (total_amount) grouped by each product_id.
-13. Show categories from the Products table that have an average product price greater than $100.
-14. Write a query using an INNER JOIN to display each order's order_id along with the customer's first_name and last_name.
-15. Fetch a list of all orders containing the product_name and the quantity ordered (requires joining Orders and Products).
-16. Combine all three tables to show the first_name of the customer, the product_name they bought, and the order_date.
-17. Find the total amount spent on orders by customers living in the 'UK'.
-18. Write a subquery to find all products that have a price higher than the overall average price of all products.
-19. Find the details of customers who have never placed an order (Hint: Use a LEFT JOIN or NOT IN).
-20. Display the top 3 highest-earning orders (total_amount) along with the respective customer names.
+DROP TABLE IF EXISTS Project_Allocations;
+DROP TABLE IF EXISTS Projects;
+DROP TABLE IF EXISTS Employees;
+DROP TABLE IF EXISTS Departments;
+
+CREATE TABLE Departments (
+    dept_id INT PRIMARY KEY,
+    dept_name VARCHAR(50),
+    location VARCHAR(50)
+);
+
+CREATE TABLE Employees (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR(50),
+    manager_id INT,
+    dept_id INT,
+    salary INT,
+    hire_date DATE,
+    FOREIGN KEY (dept_id) REFERENCES Departments(dept_id)
+);
+
+CREATE TABLE Projects (
+    project_id INT PRIMARY KEY,
+    project_name VARCHAR(50),
+    budget INT
+);
+
+CREATE TABLE Project_Allocations (
+    emp_id INT,
+    project_id INT,
+    hours_allocated INT,
+    PRIMARY KEY (emp_id, project_id),
+    FOREIGN KEY (emp_id) REFERENCES Employees(emp_id),
+    FOREIGN KEY (project_id) REFERENCES Projects(project_id)
+);
+
+INSERT INTO Departments VALUES 
+(1, 'Data Engineering', 'Bengaluru'),
+(2, 'App Development', 'Bhubaneswar'),
+(3, 'Cloud Ops', 'Mumbai'),
+(4, 'HR', 'Delhi');
+
+INSERT INTO Employees VALUES 
+(101, 'Amit', 105, 1, 95000, '2024-01-15'),
+(102, 'Sonal', 105, 1, 95000, '2024-02-10'),
+(103, 'Arjun', 101, 1, 82000, '2023-11-01'),
+(104, 'Kavitha', 105, 2, 105000, '2022-05-20'),
+(105, 'Abhishek', NULL, 2, 120000, '2021-03-12'),
+(106, 'Archana', 105, 2, 105000, '2023-08-19'),
+(107, 'Rahul', 101, 3, 90000, '2025-01-10');
+
+INSERT INTO Projects VALUES 
+(501, 'Snowflake Migration', 150000),
+(502, 'Android App Redesign', 90000),
+(503, 'AWS Cost Optimization', 60000),
+(504, 'Internal Legacy Tool', 20000);
+
+INSERT INTO Project_Allocations VALUES 
+(101, 501, 40), (102, 501, 35), (103, 501, 20),
+(104, 502, 40), (105, 502, 10), (106, 502, 45),
+(107, 503, 40), (101, 503, 15);
