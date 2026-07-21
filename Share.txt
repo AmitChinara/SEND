@@ -1,0 +1,9 @@
+| Day           | Subject                         | Time Split                                                                                  |
+| ------------- | ------------------------------- | ------------------------------------------------------------------------------------------- |
+| **Monday**    | Snowflake Theory + SQL          | **45 min** Snowflake Theory + **30-45 min** SQL Practice                                    |
+| **Tuesday**   | Python Practice                 | **60-90 min** Python coding and problem solving                                             |
+| **Wednesday** | Snowflake Theory + SQL          | **45 min** Theory + **30-45 min** SQL Practice                                              |
+| **Thursday**  | Python Practice                 | **60-90 min** Python coding                                                                 |
+| **Friday**    | Snowflake + SQL (Revision)      | **30 min** Revision + **60 min** SQL coding                                                 |
+| **Saturday**  | Mixed Practice                  | **30 min** Snowflake + **30 min** SQL + **30 min** Python                                   |
+| **Sunday**    | Weekly Revision & Mock Practice | **30 min** Snowflake Revision + **30 min** SQL + **30 min** Python (or interview questions) |
