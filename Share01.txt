@@ -1,37 +1,9 @@
-🏦 Coding Challenge: The Multi-Customer ATM Engine
-📌 Context
-In real-world banking applications, a central system must handle multiple customer profiles securely using a unified database. Furthermore, user interfaces must be flexible: if a customer selects the "Withdraw" option by mistake, they should be able to input 0 to cancel the action and safely return to the main menu without modifying their balance or creating a faulty transaction record.
+Write four modular helper functions to build this system:
 
-🎯 Your Objective
-Write a modular Python program that simulates a multi-customer ATM engine. The program will track customer balances inside a dictionary (acting as a database) and process transactions using specific validation checks.
+calculate_total_and_percentage(marks: dict[str, float]) -> tuple[float, float]: Takes a dictionary of subject marks (e.g., {"Math": 80, "Science": 90}) and returns a tuple (total_marks, percentage). Assume each subject is out of 100.
 
-⚙️ System Architecture & Rules
-You need to implement/complete the following architecture using four functions:
+get_grade(percentage: float) -> str: Takes the calculated percentage and returns the appropriate letter grade ("A", "B", "C", or "F").
 
-verifyCustomer(database, customer_id)
+is_passed(marks: dict[str, float], passing_mark: float = 40.0) -> bool: Checks if the student scored at or above the passing_mark in every individual subject.
 
-Checks if the customer_id exists as a key in the database dictionary.
-
-Returns True if they exist, and False otherwise.
-
-processDeposit(current_balance, amount)
-
-Ensures the deposit amount is greater than 0.
-
-Returns the updated balance if valid; otherwise, prints an error and returns the original balance.
-
-processWithdraw(current_balance, amount)
-
-Rule A (Navigation Safeguard): If amount == 0, print "Withdrawal canceled. Returning to main menu..." and return the original balance.
-
-Rule B (Validation): If amount < 0, print an error for invalid input.
-
-Rule C (Overdraft Guard): If amount > current_balance, print "Error: Insufficient funds.".
-
-If all checks pass, deduct the amount and return the new balance.
-
-atmSession(database, customer_id, action_type, amount)
-
-The main orchestrator. It must first call verifyCustomer. If the customer does not exist, print an error and halt execution.
-
-If the customer is verified, look up their balance, pass it to the correct helper function based on action_type, and update that customer's specific balance directly inside the database dictionary.
+generate_report_card(name: str, marks: dict[str, float]) -> dict: Uses the three helper functions above to return a structured report summary.
