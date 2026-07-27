@@ -1,6 +1,6 @@
 ===============================
 SNOWFLAKE INTERVIEW PREPARATION
-PART 2 – TOPICS TO COVER
+TOPICS TO COVER
 ===============================
 
 1. Snowflake Architecture
