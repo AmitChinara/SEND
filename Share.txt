@@ -1,105 +1,155 @@
-Snowflake Theory
-Explain Snowflake Architecture
+===============================
+SNOWFLAKE INTERVIEW PREPARATION
+PART 2 – TOPICS TO COVER
+===============================
 
-Cover:
+1. Snowflake Architecture
+   - Snowflake Architecture Overview
+   - Database
+   - Schema
+   - Tables
+   - Views
+   - Virtual Warehouse
+   - Storage Layer
+   - Compute Layer
+   - Cloud Services Layer
 
-Database
-Schema
-Tables
-Virtual Warehouse
-Cloud Services
-Storage Layer
-Compute Layer
-Virtual Warehouse
+2. Snowflake Objects
+   - Database
+   - Schema
+   - Permanent Table
+   - Temporary Table
+   - Transient Table
+   - View
+   - Materialized View
+   - Sequence
+   - Stage
+   - File Format
 
-Explain:
+3. Virtual Warehouse
+   - What is a Virtual Warehouse?
+   - Warehouse Sizes
+   - Auto Suspend
+   - Auto Resume
+   - Warehouse Scaling
+   - Scaling Up vs Scaling Out
+   - Multi-cluster Warehouse
+   - Resource Monitors
 
-Compute cluster
-Independent compute
-Auto Suspend
-Auto Resume
-Multi-cluster Warehouse
-What is Micro-partition?
+4. Storage
+   - Micro-partitions
+   - Metadata
+   - Query Pruning
+   - Clustering Keys
+   - Search Optimization Service
 
-Answer:
+5. Data Loading
+   - Internal Stage
+   - External Stage
+   - Named Stage
+   - User Stage
+   - Table Stage
+   - COPY INTO
+   - Snowpipe
+   - Snowpipe Streaming
+   - Bulk Loading
 
-Automatically created
-50–500 MB (uncompressed)
-Metadata maintained
-Used for pruning
-Improves query performance
-Query Pruning
+6. Data Protection
+   - Time Travel
+   - Fail-safe
+   - Zero Copy Cloning
+   - Data Recovery
 
-Explain:
+7. Change Data Capture (CDC)
+   - Streams
+   - Tasks
+   - Dynamic Tables (Basics)
 
-Metadata
-Scan only required partitions
-Reduces compute
-Faster queries
-Clustering Key
+8. Data Sharing
+   - Secure Data Sharing
+   - Provider
+   - Consumer
+   - Reader Account
 
-Know:
+9. Query Performance Optimization
+   - Query Profile
+   - Result Cache
+   - Metadata Cache
+   - Warehouse Cache
+   - Query Pruning
+   - Clustering Keys
+   - Avoid SELECT *
+   - Filter Early
+   - Efficient Joins
 
-When to use
-Advantages
-Cost implications
-Time Travel
+10. Security
+   - Users
+   - Roles
+   - Grants
+   - RBAC (Role-Based Access Control)
+   - Masking Policy
+   - Row Access Policy
+   - Network Policy
 
-Know:
+11. SQL Features
+   - QUALIFY
+   - Window Functions
+   - CTE
+   - MERGE
+   - COPY INTO
+   - Stored Procedures (Basics)
+   - User Defined Functions (UDFs)
 
-Purpose
-Retention period
-Restore dropped objects
-Fail-safe
+12. Semi-Structured Data
+   - VARIANT
+   - OBJECT
+   - ARRAY
+   - PARSE_JSON()
+   - FLATTEN()
 
-Difference from Time Travel.
+13. Cost Optimization
+   - Warehouse Sizing
+   - Auto Suspend
+   - Auto Resume
+   - Query Optimization
+   - Clustering Cost
+   - Storage Cost
 
-Streams
+14. Monitoring
+   - Query History
+   - Warehouse Monitoring
+   - Query Profile
+   - Resource Monitors
 
-Purpose:
+15. Common Interview Scenarios
+   - Explain Snowflake Architecture.
+   - Explain your end-to-end ETL pipeline.
+   - How do you load data from AWS S3 into Snowflake?
+   - How do you optimize a slow query?
+   - Explain Micro-partitions.
+   - Explain Query Pruning.
+   - What are Clustering Keys?
+   - Difference between Streams and Tasks.
+   - Difference between Snowpipe and COPY INTO.
+   - Difference between Internal and External Stage.
+   - Difference between Temporary and Transient Tables.
+   - Difference between Time Travel and Fail-safe.
+   - Explain Secure Data Sharing.
+   - Explain Scaling Up vs Scaling Out.
+   - How do you remove duplicate records?
+   - How do you validate ETL data?
+   - Explain a production issue you resolved.
 
-Capture CDC
-Track Inserts
-Updates
-Deletes
-Tasks
-
-Scheduling SQL automatically.
-
-Example:
-
-Daily ETL
-
-↓
-
-Task
-
-↓
-
-Run Transformation
-
-↓
-
-Load Target Table
-
-Snowpipe
-
-Explain automatic loading.
-
-Internal vs External Stage
-
-Know differences.
-
-COPY INTO
-
-Syntax
-
-COPY INTO employee
-FROM @stage;
-Secure Data Sharing
-
-Reader Account
-
-Consumer Account
-
-Provider
+16. SQL Coding Practice
+   - Window Functions
+   - QUALIFY
+   - CTE
+   - MERGE
+   - PIVOT
+   - UNPIVOT
+   - Joins
+   - Subqueries
+   - Recursive CTE
+   - Duplicate Removal
+   - Running Total
+   - Ranking Functions
